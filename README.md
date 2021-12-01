@@ -3,7 +3,9 @@
 Steps tp Run the Project:
 1) After cloning run npm install in api and frontend.
 2) You'll require angular to run the project.
-3) Frontend runs on localhost:4200, backend runs on localhost:3000.
+3) Navigate to api folder and run the command node app.js to start the server
+4) Navigate to frontend folter and run the comman ng serve to start the app
+5) Frontend runs on localhost:4200, backend runs on localhost:3000.
 
 
 
