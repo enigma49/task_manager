@@ -9,6 +9,7 @@ Steps tp Run the Project:
 
 # About Project
 1) A user can sign-in or sign-up to create tasks.
-2) Each task is contatined in a bucket of tasks.
-3) User can click on the task to mark it complete
-4) User can edit or delete a task based on the requirement.
+2) Each task is contatined in a bucket of tasks called List.
+3) Each task must have a priority and a deadline.
+4) User can click on the task to mark it complete
+5) User can edit or delete a task based on the requirement.
