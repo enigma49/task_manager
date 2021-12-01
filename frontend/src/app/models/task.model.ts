@@ -3,4 +3,6 @@ export class Task {
     _listId: string;
     title: string;
     completed: boolean;
+    deadline: Date;
+    priority: string;
 }

@@ -49,6 +49,14 @@
           <div class="task-text">
             <p>{{ task.title }}</p>
           </div>
+
+          <div class="task-text">
+            <button class="button" [ngClass] = "task.priority === 'High'? 'is-danger': task.priority === 'Medium'? 'is-warning': 'is-primary' ">{{ task.priority }}</button>
+          </div>
+
+          <div class="task-text">
+            <p>{{ task.deadline | date:'dd/MM/yyyy' }}</p>
+          </div>
           <div class="task-buttons">
 
             <button class="button" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">

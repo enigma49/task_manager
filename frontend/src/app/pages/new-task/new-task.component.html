@@ -4,11 +4,44 @@
       Create a new task
     </h1>
 
-    <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter task name...">
+    <!-- <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter task name...">
     <br><br>
-    <div class="buttons is-right">
-      <button class="button is-medium" routerLink="/">Cancel</button>
+    <div class="buttons is-left">
+      <select class = "button is-primary has-text-white is-medium">
+        <option style='display:none'>
+          Select Priority
+        </option>
+        <option class="button is-medium" *ngFor="let priority of priorities" [value] = "priority.id">{{priority.name}}</option>
+      </select>
+      <button class="button is-primary has-text-white is-medium" (click)="createTask(taskTitleInput.value)">Deadline</button>
       <button class="button is-primary has-text-white is-medium" (click)="createTask(taskTitleInput.value)">Create</button>
+      <button class="button is-medium" routerLink="/">Cancel</button>
+    </div> -->
+
+    <div class="container-fluid">
+      <form #userForm= "ngForm" (ngSubmit)="createTask(userForm)">
+        <div class="form-group">
+          <input [(ngModel)]="title" name="title" #taskTitleInput class="form-control input has-background-light is-medium" type="text" placeholder="Enter task name...">
+        </div>
+
+        <div class="buttons is-left">
+          <div class="form-group">
+            <select [(ngModel)] = "priority" name="priority" class = "button is-primary has-text-white is-medium">
+              <option [ngValue]="null">
+                Select Priority
+              </option>
+              <option class="button is-medium" *ngFor="let priority of priorities" [value] = "priority.name" [ngClass] = "priority.name === 'High'? 'is-danger': priority.name === 'Medium'? 'is-warning': 'is-primary' ">{{priority.name}}</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <input [(ngModel)]="deadline" name="deadline" class="button date input has-background-light is-medium" type="date" placeholder="Select a Deadline...">
+          </div>
+
+          <button class="button is-primary has-text-white is-medium" type="submit">Create</button>
+          <button class="button is-medium" routerLink="/">Cancel</button>
+        </div>
+      </form>
     </div>
 
     

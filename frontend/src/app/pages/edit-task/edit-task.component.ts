@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/task.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-task',
@@ -13,7 +14,7 @@ export class EditTaskComponent implements OnInit {
 
   taskId: string;
   listId: string;
-
+  priorities: any[];
   
   ngOnInit() {
     this.route.params.subscribe(
@@ -22,10 +23,18 @@ export class EditTaskComponent implements OnInit {
         this.listId = params.listId;
       }
     )
+
+    this.priorities = [
+      {id:1, name:"Low"},
+      {id:2, name:"Medium"},
+      {id:3, name:"High"},
+    ]
+
   }
 
-  updateTask(title: string) {
-    this.taskService.updateTask(this.listId, this.taskId, title).subscribe(() => {
+  updateTask(data: NgForm) {
+    console.log(data.value)
+    this.taskService.updateTask(this.listId, this.taskId, data.value).subscribe(() => {
       this.router.navigate(['/lists', this.listId]);
     })
   }

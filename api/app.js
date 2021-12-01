@@ -210,10 +210,18 @@ app.post('/lists/:listId/tasks', authenticate, (req, res) => {
         return false;
     }).then((canCreateTask) => {
         if (canCreateTask) {
+
+            formData = req.body.data
+
             let newTask = new Task({
-                title: req.body.title,
+                title: formData.title,
+                deadline: formData.deadline,
+                priority: formData.priority,
                 _listId: req.params.listId
             });
+
+            console.log(req.body,"NEW TASK")
+
             newTask.save().then((newTaskDoc) => {
                 res.send(newTaskDoc);
             })
@@ -245,11 +253,17 @@ app.patch('/lists/:listId/tasks/:taskId', authenticate, (req, res) => {
     }).then((canUpdateTasks) => {
         if (canUpdateTasks) {
             // the currently authenticated user can update tasks
+            formData = req.body.data
+            console.log(formData)
             Task.findOneAndUpdate({
                 _id: req.params.taskId,
                 _listId: req.params.listId
             }, {
-                    $set: req.body
+                    $set: {
+                        title: formData.title,
+                        deadline: formData.deadline,
+                        priority: formData.priority,   
+                    }
                 }
             ).then(() => {
                 res.send({ message: 'Updated successfully.' })
