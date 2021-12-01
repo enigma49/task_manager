@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const { List, Task, User } = require('./db/models');
 
 const jwt = require('jsonwebtoken');
+const { flatMap } = require('lodash');
 
 
 /* MIDDLEWARE  */
@@ -253,8 +254,12 @@ app.patch('/lists/:listId/tasks/:taskId', authenticate, (req, res) => {
     }).then((canUpdateTasks) => {
         if (canUpdateTasks) {
             // the currently authenticated user can update tasks
-            formData = req.body.data
-            console.log(formData)
+            if (req.body.data != undefined) {
+                formData = req.body.data
+            } else {
+                formData = req.body
+            }
+            console.log(req.body, "FORMDATA")
             Task.findOneAndUpdate({
                 _id: req.params.taskId,
                 _listId: req.params.listId
@@ -262,7 +267,8 @@ app.patch('/lists/:listId/tasks/:taskId', authenticate, (req, res) => {
                     $set: {
                         title: formData.title,
                         deadline: formData.deadline,
-                        priority: formData.priority,   
+                        priority: formData.priority,
+                        completed: formData.completed   
                     }
                 }
             ).then(() => {

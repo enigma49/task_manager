@@ -47,8 +47,12 @@ export class TaskService {
   }
 
   complete(task: Task) {
+    console.log(task, "SERVICES")
     return this.webReqService.patch(`lists/${task._listId}/tasks/${task._id}`, {
-      completed: !task.completed
+      completed: !task.completed,
+      title: task.title,
+      deadline: task.deadline,
+      priority : task.priority
     });
   }
 }
