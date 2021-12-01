@@ -27,7 +27,7 @@
         <div class="buttons is-left">
           <div class="form-group">
             <select [(ngModel)] = "priority" name="priority" class = "button is-primary has-text-white is-medium">
-              <option [ngValue]="null">
+              <option [ngValue]="priority">
                 Select Priority
               </option>
               <option class="button is-medium" *ngFor="let priority of priorities" [value] = "priority.name" [ngClass] = "priority.name === 'High'? 'is-danger': priority.name === 'Medium'? 'is-warning': 'is-primary' ">{{priority.name}}</option>
