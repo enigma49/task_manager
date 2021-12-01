@@ -8,6 +8,7 @@ Steps tp Run the Project:
 5) Frontend runs on localhost:4200, backend runs on localhost:3000.
 6) Navigate to localhost:4200/login to login and signup
 
+Note: Incase you get a node-sass error make sure your version of node is compatible with the sass version. 
 
 
 # About Project
